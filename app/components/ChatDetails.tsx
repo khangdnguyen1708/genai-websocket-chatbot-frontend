@@ -15,12 +15,12 @@ const ChatDetails = () => {
     const [messages, setMessages] = useState(WELCOME_MESSAGES);
     const [newMessage, setNewMessage] = useState('');
     const [isChatboxOpen, setIsChatboxOpen] = useState(false);
-    const chatbox = useRef(null);
-    const chatContainer = useRef(null);
-    const userInput = useRef(null);
-    const sendButton = useRef(null);
-    const openChatButton = useRef(null);
-    const closeChatButton = useRef(null);
+    const chatbox = useRef<HTMLDivElement>(null);
+    const chatContainer = useRef<HTMLDivElement>(null);
+    const userInput = useRef<HTMLInputElement>(null);
+    const sendButton = useRef<HTMLButtonElement>(null);
+    const openChatButton = useRef<HTMLButtonElement>(null);
+    const closeChatButton = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         if (chatbox.current) {

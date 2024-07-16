@@ -1,4 +1,10 @@
+'use client';
+
 import ChatDetails from './components/ChatDetails';
+import Features from './components/Features';
+import Footer from './components/Footer';
+import Teams from './components/Teams';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -8,12 +14,14 @@ export default function Home() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <img className="h-10 w-100" src="https://www.cloud-kinetics.com/wp-content/uploads/2023/07/CloudKinetics-Logo.svg" alt="Cloud Kinetics" />
+                <Image className="h-10 w-100" src="https://www.cloud-kinetics.com/wp-content/uploads/2023/07/CloudKinetics-Logo.svg" width={200} height={20} alt="Cloud Kinetics" />
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   <a href="https://www.cloud-kinetics.com/about-ck/" className="rounded-md px-3 py-2 text-sm font-medium text-black-300 hover:bg-gray-700 hover:text-white">About</a>
                   <a href="https://www.cloud-kinetics.com/success-stories/" className="rounded-md px-3 py-2 text-sm font-medium text-black-300 hover:bg-gray-700 hover:text-white">Success Stories</a>
+                  <a href="https://www.cloud-kinetics.com/blog/" className="rounded-md px-3 py-2 text-sm font-medium text-black-300 hover:bg-gray-700 hover:text-white">Blogs & Resources</a>
+                  <a href="https://www.cloud-kinetics.com/competencies/" className="rounded-md px-3 py-2 text-sm font-medium text-black-300 hover:bg-gray-700 hover:text-white">Competencies</a>
                 </div>
               </div>
             </div>
@@ -37,7 +45,7 @@ export default function Home() {
           <section className="bg-gray-50">
             <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
               <div className="mr-auto place-self-center lg:col-span-7">
-                <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-black">Welcome to Cloud-Kinetics Vietnam GenAI Demo</h1>
+                <h1 className="animate-typing overflow-hidden whitespace-nowrap max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-black">CK Vietnam GenAI</h1>
                 <p className="max-w-2xl mb-6 font-light text-stone-500 lg:mb-8 md:text-lg lg:text-xl">Experience cutting-edge generative AI solutions designed to transform industries, enhance decision-making, and drive efficiency. Discover the future of AI with us today.</p>
                 <a href="mailto:info_vn@cloud-kinetics.com" className="inline-flex items-center justify-center px-5 py-3 text-white font-medium text-center text-gray-900 border border-gray-300 rounded-lg bg-sky-950 hover:bg-sky-800 hover:text-gray-200">
                   Contact Us
@@ -47,16 +55,17 @@ export default function Home() {
                 </a> */}
               </div>
               <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                <img src="https://cloudkinetics.cloud/assets/%E6%A8%A1%E6%8B%9F%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE.2c18bdbe.svg" alt="mockup" />
+                <Image src="https://cloudkinetics.cloud/assets/%E6%A8%A1%E6%8B%9F%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE.2c18bdbe.svg" height={200} width={400} alt="mockup" />
               </div>
             </div>
           </section>
-
+          <Features />
+          <Teams />
         </div>
         <ChatDetails />
-        <div className='fixed bottom-0 w-full'>
-        </div>
+        <ChatDetails />
       </main>
+      <Footer />
     </div>
   );
 }
