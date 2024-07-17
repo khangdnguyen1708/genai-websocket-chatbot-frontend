@@ -1,19 +1,14 @@
 'use client';
 import { useRef, useState, useEffect } from 'react';
-import io from 'socket.io-client';
+import useWebSocket from '../hooks/useWebSocket'
 
-const socket = io('wss://yyajqmacn4.execute-api.us-east-1.amazonaws.com/prod'); // Replace with your WebSocket server URL
+const websocketUrl = 'wss://yyajqmacn4.execute-api.us-east-1.amazonaws.com/prod';
 
-const WELCOME_MESSAGES = [
-    { user: "Assistant", text: "Hello, I am CKVN GenAI Chabot, how can I help you?" },
-    { user: "Assistant", text: "Xin chào tôi là CKVN GenAI Chabot, tôi có thể giúp gì được bạn?" },
-]
 const RAG_NAME = "RAG GenAI Chatbot"
 const ADMIN_NAME = "CKVN RAG GenAI Chatbot"
 
 const ChatDetails = () => {
-    const [messages, setMessages] = useState(WELCOME_MESSAGES);
-    const [newMessage, setNewMessage] = useState('');
+    const { messages, newMessage, setNewMessage, sendMessage } = useWebSocket(websocketUrl);
     const [isChatboxOpen, setIsChatboxOpen] = useState(false);
     const chatbox = useRef<HTMLDivElement>(null);
     const chatContainer = useRef<HTMLDivElement>(null);
@@ -38,57 +33,9 @@ const ChatDetails = () => {
         }
     }, [isChatboxOpen]);
 
-
-    useEffect(() => {
-        socket.on('connect', () => {
-            console.log('Connected to WebSocket server');
-        });
-
-        socket.on('message', (message) => {
-            setMessages((prevMessages) => [...prevMessages, message]);
-        });
-
-        socket.on('disconnect', () => {
-            console.log('Disconnected from WebSocket server');
-        });
-        socket.on('connect_error', (error) => {
-            console.error('Connection Error:', error);
-        });
-
-        socket.on('error', (error) => {
-            console.error('WebSocket Error:', error);
-        });
-
-        socket.on('reconnect_attempt', (attemptNumber) => {
-            console.log(`Reconnect attempt #${attemptNumber}`);
-        });
-
-        return () => {
-            socket.off('connect');
-            socket.off('message');
-            socket.off('disconnect');
-        };
-    }, []);
-
-
     const toggleChatbox = () => {
         setIsChatboxOpen(prevState => !prevState);
     };
-
-    const sendMessage = () => {
-        if (newMessage.trim() !== '') {
-            console.log(socket)
-            socket.emit('message', newMessage);
-            setMessages((prevMessages) => [...prevMessages, { user: "Human", text: newMessage }]);
-            setNewMessage('');
-            respondToUser(newMessage);
-        }
-    };
-
-    const respondToUser = (message: string) => {
-        // TODO: bedrock integration
-        console.log(message)
-    }
 
     const handleKeyPress = (e: { key: string; }) => {
         if (e.key === 'Enter') {
