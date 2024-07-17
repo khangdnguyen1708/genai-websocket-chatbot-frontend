@@ -39,7 +39,6 @@ const useWebSocket = (url: string) => {
 
     socket.current.onmessage = (event) => {
       const messageChunk = event.data;
-      console.log("Received message chunk from server:", messageChunk);
       if (messageChunk != "<End of LLM response>") {
         setPartialMessage((prevPartial) => prevPartial + messageChunk);
 
@@ -76,16 +75,16 @@ const useWebSocket = (url: string) => {
         { user: "Human", text: newMessage },
       ]);
       setNewMessage("");
-    }
-    if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-      const request = buildRequest(newMessage);
-      console.log(`sending ${request}`);
-      socket.current.send(request);
+      if (socket.current && socket.current.readyState === WebSocket.OPEN) {
+        const request = buildRequest(newMessage);
+        console.log(`sending ${request}`);
+        socket.current.send(request);
+      }
     }
   };
 
   const buildRequest = (prompt: string) => {
-    return `{"action":"invokeModel", "parameters":{"modelId": "${MODEL_ID}", "temperature": ${TEMPERATURE}}, "prompt": "Human:${prompt}Assistant:"}`;
+    return `{"action":"invokeModel", "parameters":{"modelId": "${MODEL_ID}", "temperature": ${TEMPERATURE}}, "prompt": "Human:${prompt} Assistant:"}`;
   };
 
   return {
@@ -93,6 +92,7 @@ const useWebSocket = (url: string) => {
     newMessage,
     setNewMessage,
     sendMessage,
+    isConnected,
   };
 };
 

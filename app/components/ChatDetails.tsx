@@ -8,7 +8,7 @@ const RAG_NAME = "RAG GenAI Chatbot"
 const ADMIN_NAME = "CKVN RAG GenAI Chatbot"
 
 const ChatDetails = () => {
-    const { messages, newMessage, setNewMessage, sendMessage } = useWebSocket(websocketUrl);
+    const { messages, newMessage, setNewMessage, sendMessage, isConnected } = useWebSocket(websocketUrl);
     const [isChatboxOpen, setIsChatboxOpen] = useState(false);
     const chatbox = useRef<HTMLDivElement>(null);
     const chatContainer = useRef<HTMLDivElement>(null);
@@ -38,7 +38,7 @@ const ChatDetails = () => {
     };
 
     const handleKeyPress = (e: { key: string; }) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && isConnected) {
             sendMessage()
         }
     }
@@ -74,7 +74,7 @@ const ChatDetails = () => {
                     ))}
 
                 </div>
-                <div className="bg-white p-4 border-t flex">
+                <div className={`bg-white p-4 border-t flex ${isConnected ? '' : 'hidden'}`}>
                     <input ref={userInput} onKeyUp={handleKeyPress} value={newMessage} onChange={(e) => setNewMessage(e.target.value)} id="user-input" type="text" placeholder="Type a message" className="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     <button ref={sendButton} onClick={sendMessage} id="send-button" className="bg-emerald-500 text-white px-4 py-2 rounded-r-md hover:bg-emerald-600 transition duration-300">Send</button>
                 </div>
