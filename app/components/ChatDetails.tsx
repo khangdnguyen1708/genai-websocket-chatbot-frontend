@@ -75,7 +75,7 @@ const ChatDetails = () => {
 
                 </div>
                 <div className={`bg-white p-4 border-t flex ${isConnected ? '' : 'hidden'}`}>
-                    <input ref={userInput} onKeyUp={handleKeyPress} value={newMessage} onChange={(e) => setNewMessage(e.target.value)} id="user-input" type="text" placeholder="Type a message" className="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <input ref={userInput} onKeyUp={handleKeyPress} value={newMessage} onChange={(e) => setNewMessage(e.target.value)} id="user-input" type="text" placeholder="Type a message" className="w-full px-3 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black" />
                     <button ref={sendButton} onClick={sendMessage} id="send-button" className="bg-emerald-500 text-white px-4 py-2 rounded-r-md hover:bg-emerald-600 transition duration-300">Send</button>
                 </div>
             </div>

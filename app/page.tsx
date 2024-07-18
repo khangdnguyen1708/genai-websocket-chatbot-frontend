@@ -45,7 +45,7 @@ export default function Home() {
           <section className="bg-gray-50">
             <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
               <div className="mr-auto place-self-center lg:col-span-7">
-                <h1 className="animate-typing overflow-hidden whitespace-nowrap max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-black">CK Vietnam GenAI</h1>
+                <h1 className="animate-typing overflow-hidden whitespace-nowrap max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-black">CK Vietnam FIX</h1>
                 <p className="max-w-2xl mb-6 font-light text-stone-500 lg:mb-8 md:text-lg lg:text-xl">Experience cutting-edge generative AI solutions designed to transform industries, enhance decision-making, and drive efficiency. Discover the future of AI with us today.</p>
                 <a href="mailto:info_vn@cloud-kinetics.com" className="inline-flex items-center justify-center px-5 py-3 text-white font-medium text-center text-gray-900 border border-gray-300 rounded-lg bg-sky-950 hover:bg-sky-800 hover:text-gray-200">
                   Contact Us

@@ -10,7 +10,7 @@ const WELCOME_MESSAGES = [
   },
 ];
 const MODEL_ID = "anthropic.claude-3-sonnet-20240229-v1:0";
-const TEMPERATURE = 0;
+const TEMPERATURE = 0.5;
 
 const useWebSocket = (url: string) => {
   const [messages, setMessages] = useState(WELCOME_MESSAGES);
